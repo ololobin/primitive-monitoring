@@ -15,6 +15,7 @@ Use:
 * Run monitoring.py (monitoring.exe) and login.
 * Put tail_log.sh in the log directory on servers.
 and
+
 .. code-block:: bash
 
   $ /path_to_logs/tail_log.sh
