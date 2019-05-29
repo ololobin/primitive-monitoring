@@ -7,14 +7,6 @@ We have 2 servers with an application that writes logs in smth.log.
 The employees working on Windows stations.
 "monitoring.py" is our main file and we can make monitoring.exe for our employees.
 
-To create EXE
-==============
-.. code-block:: bash
-
-  $ pip install pypiwin32
-  $ pip install pyinstaller
-  pyinstaller --onefile --icon=1.ico monitoring.py
-  
 Use:
 ====
 
@@ -72,3 +64,11 @@ counterrors_TS.sh
 Result:
 =======
 .. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example.png
+
+To create EXE
+==============
+.. code-block:: bash
+
+  $ pip install pypiwin32
+  $ pip install pyinstaller
+  pyinstaller --onefile --icon=1.ico monitoring.py
