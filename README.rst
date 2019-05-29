@@ -37,6 +37,7 @@ counterrors_TS.sh
   $ MASK='ext*.log' #Mask of log files
   $ ERR="(\sE\s\[)" #What to find
   $ MAXSIZE=204800 #Max size for error.txt in bytes
+  $ cd /path_to_logs #paste the way to logs
   
 monitoring.py
 
