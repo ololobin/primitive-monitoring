@@ -21,12 +21,18 @@ Use:
 * Put counterrors_TS.sh in the log directory on servers.
 * Put errors.txt in logs before 1st run
 * Run monitoring.py (monitoring.exe) and login.
+* Put tail_log.sh in the log directory on servers.
+and
+.. code-block:: bash
+
+  $ /path_to_logs/tail_log.sh
 
 Concepts
 ========
 * "counterrors_TS.sh" counts the number of entries in the log file and writes it to error.txt.
 * "monitoring.py" downloads this file via ssh, reads lines and visualizes on two graphs.
 * "monitoring.py" also run counterrors_TS.sh
+* "tail_log.sh" shows error strings and send mail alerts
 
 Configuration
 =============
@@ -53,6 +59,16 @@ monitoring.py
   plt.ylabel('Цена') # 0Y label
   plt.title('RED - 100 \n BLUE - 101') #title
   
+counterrors_TS.sh
+
+.. code-block:: bash
+
+  $ ERROR_STR=50 #– max errors
+  $ ERR="(\sE\s\[)" #look for " E "
+  $ MASK='ext*.log' #Mask of log files
+  $ OCTA='172.10.' #first octets witch are same on all of your server where this *.sh would be put.
+  $ recipients='mail@mail.com' #–past mail
+    
 Result:
 =======
 .. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example.png
