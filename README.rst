@@ -47,3 +47,7 @@ monitoring.py
   SERVER2='server2' #paste your server#2
   source='/path_to_logs/logs/errors.txt' #paste the way to logs
   cmd2='/path_to_logs/logs/counterrors_TS.sh &' #paste the way to logs
+
+Result:
+=======
+.. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example.png
