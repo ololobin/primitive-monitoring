@@ -5,8 +5,8 @@ from collections import deque
 SERVER1='server1' #paste your server#1
 SERVER2='server2' #paste your server#2
 source='/path_to_logs/logs/errors.txt' #paste the way to logs
-localpath1=os.path.abspath(os.curdir) + '\\error1.txt'
-localpath2=os.path.abspath(os.curdir) + '\\error2.txt'
+localpath1=os.path.join(os.path.abspath(os.curdir),'error1.txt')
+localpath2=os.path.join(os.path.abspath(os.curdir),'error2.txt')
 port = 22
 cmd1='ps ax |grep "counterrors_TS.sh" | awk \'{print  $5;}\'|grep "bash"'
 cmd2='/path_to_logs/logs/counterrors_TS.sh &' #paste the way to logs
