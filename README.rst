@@ -65,6 +65,7 @@ counterrors_TS.sh
 Result:
 =======
 .. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example.png
+.. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example_tail.png
 
 To create EXE
 ==============
