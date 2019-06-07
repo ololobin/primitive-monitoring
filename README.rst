@@ -23,7 +23,7 @@ and
 Concepts
 ========
 * "counterrors_TS.sh" counts the number of entries in the log file and writes it to error.txt.
-* "monitoring_v2.py" downloads this file via ssh, reads lines and visualizes on two graphs.
+* "monitoring_v2.py" downloads this file via ssh, reads lines and visualizes.
 * "monitoring_v2.py" also run counterrors_TS.sh
 * "tail_log.sh" shows error strings and send mail alerts
 
@@ -51,9 +51,10 @@ monitoring.py
   plt.xlabel('') # 0X label
   plt.ylabel('Цена') # 0Y label
   plt.title('RED - 100 \n BLUE - 101') #title
-  !!!new v2:
+  !!!new v2!!!:
   labelname=['Label1', 'Label2'] #paste your labels for legend
   plt.xlabel, plt.ylabel and plt.title has been deleted
+  
 counterrors_TS.sh
 
 .. code-block:: bash
