@@ -68,8 +68,10 @@ counterrors_TS.sh
 Result:
 =======
 v2:
+
 .. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example_v2.png
 v1:
+
 .. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example.png
 .. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example_tail.png
 
