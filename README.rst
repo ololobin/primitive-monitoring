@@ -12,7 +12,7 @@ Use:
 
 * Put counterrors_TS.sh in the log directory on servers.
 * Put errors.txt in logs before 1st run
-* Run monitoring.py (monitoring.exe) and login.
+* Run monitoring_v2.py (monitoring.exe) and login.
 * Put tail_log.sh in the log directory on servers.
 and
 
@@ -23,8 +23,8 @@ and
 Concepts
 ========
 * "counterrors_TS.sh" counts the number of entries in the log file and writes it to error.txt.
-* "monitoring.py" downloads this file via ssh, reads lines and visualizes on two graphs.
-* "monitoring.py" also run counterrors_TS.sh
+* "monitoring_v2.py" downloads this file via ssh, reads lines and visualizes on two graphs.
+* "monitoring_v2.py" also run counterrors_TS.sh
 * "tail_log.sh" shows error strings and send mail alerts
 
 Configuration
@@ -51,7 +51,9 @@ monitoring.py
   plt.xlabel('') # 0X label
   plt.ylabel('Цена') # 0Y label
   plt.title('RED - 100 \n BLUE - 101') #title
-  
+  !!!new v2:
+  labelname=['Label1', 'Label2'] #paste your labels for legend
+  plt.xlabel, plt.ylabel and plt.title has been deleted
 counterrors_TS.sh
 
 .. code-block:: bash
@@ -66,11 +68,11 @@ Result:
 =======
 .. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example.png
 .. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example_tail.png
-
+.. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example_v2.png
 To create EXE
 ==============
 .. code-block:: bash
 
   $ pip install pypiwin32
   $ pip install pyinstaller
-  pyinstaller --onefile --icon=1.ico monitoring.py
+  pyinstaller --onefile --icon=1.ico monitoring_v2.py
