@@ -2,7 +2,7 @@
 #trap "kill 0" EXIT
 MASK='ext*.log'
 ERR="(\sM\s\[)"
-MAXSIZE=204800 #200KB
+MAXSIZE=102400 #100KB
 cd /path_to_logs #paste the way to logs
 WATCHFILE=$(ls -t $MASK | head -n 1) #In my case i am watching files with "ext*.log" mask
 file=errors.txt #put errors.txt in logs before 1st run
