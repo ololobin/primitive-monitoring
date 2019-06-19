@@ -11,7 +11,7 @@ Use:
 ====
 
 * Put counterrors_TS.sh in the log directory on servers.
-* Put errors.txt in logs before 1st run
+* Put errors.txt and alarm.mp3 in logs before 1st run
 * Run monitoring_v2.py (monitoring.exe) and login.
 * Put tail_log.sh in the log directory on servers.
 and
@@ -23,7 +23,7 @@ and
 Concepts
 ========
 * "counterrors_TS.sh" counts the number of entries in the log file and writes it to error.txt.
-* "monitoring_v2.py" downloads this file via ssh, reads lines and visualizes.
+* "monitoring_v2.py" downloads this file via ssh, reads lines and visualizes and plays "alarm.mp3"
 * "monitoring_v2.py" also run counterrors_TS.sh
 * "tail_log.sh" shows error strings and send mail alerts
 
@@ -54,6 +54,8 @@ monitoring.py
   !!!new v2!!!:
   labelname=['Label1', 'Label2'] #paste your labels for legend
   plt.xlabel, plt.ylabel and plt.title has been deleted
+  sound=os.path.join(os.path.abspath(os.curdir),'alarm.mp3') #alarm.mp3 is your alarm sound
+  maxerrors=int(input('Enter maximum of errors: ')) #for dound alarm and 0y line
   
 counterrors_TS.sh
 
