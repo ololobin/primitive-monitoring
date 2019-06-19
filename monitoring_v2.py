@@ -14,7 +14,6 @@ port = 22
 cmd1='ps ax |grep "counterrors_TS.sh" | awk \'{print  $5;}\'|grep "bash"'
 cmd2='/path_to_logs/logs/counterrors_TS.sh &' #paste the way to logs
 labelname=['Label1', 'Label2'] #paste your labels
-maxerrors=80
 
 # make EXE for employee
 # pip install pypiwin32
@@ -24,6 +23,7 @@ maxerrors=80
 
 user=input('Enter login: ')
 passs=getpass.getpass(prompt='Enter password: ') #tiny security
+maxerrors=int(input('Enter maximum of errors: '))
 
 plt.style.use('dark_background')
 gridsize = (3, 2)
