@@ -9,11 +9,18 @@ The employees working on Windows stations.
 
 Use:
 ====
-
-* Put counterrors_TS.sh in the log directory on servers.
-* Put errors.txt and alarm.mp3 in logs before 1st run
-* Run monitoring_v2.py (monitoring.exe) and login.
+* Put counterrors_TS.sh in the log directory on servers;
+* Put errors.txt and alarm.mp3 in logs before 1st run;
+* Run monitoring_v2.py (monitoring.exe) and login;
 * Put tail_log.sh in the log directory on servers.
+
+and
+.. code-block::  python
+
+pip install paramiko
+pip install matplotlib
+pip install playsound
+
 and
 
 .. code-block:: bash
