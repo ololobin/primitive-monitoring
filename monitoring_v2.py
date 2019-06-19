@@ -14,6 +14,7 @@ port = 22
 cmd1='ps ax |grep "counterrors_TS.sh" | awk \'{print  $5;}\'|grep "bash"'
 cmd2='/path_to_logs/logs/counterrors_TS.sh &' #paste the way to logs
 labelname=['Label1', 'Label2'] #paste your labels
+maxerrors=80
 
 # make EXE for employee
 # pip install pypiwin32
@@ -35,7 +36,7 @@ ax2 = plt.subplot2grid(gridsize, (2, 1))
 def animate(i): #this one w\o scale to clearly see the peak of failure
     with open(localpath1) as f:
         last_line = f.readlines()[-1]
-        if int(last_line)>80:
+        if int(last_line)>maxerrors:
             try:
                 playsound(sound)
             except:
@@ -51,10 +52,10 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
     ax.clear()
     ax.plot(x1s, y1s,'r')
 
-    ax.set_ylim((0, 80), auto=False) #this 80 value means max critical for paying attention
+    ax.set_ylim((0, maxerrors), auto=False) #this maxerrors value means max critical for paying attention
     with open(localpath2) as f:        
         last_line = f.readlines()[-1]
-        if int(last_line)>80:
+        if int(last_line)>maxerrors:
             try:
                 playsound(sound)
             except:
@@ -68,7 +69,7 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
             x2s.append(x2)
             y2s.append(float(y2))
     ax.plot(x2s, y2s,'b')
-    ax.set_ylim((0, 80), auto=False)
+    ax.set_ylim((0, maxerrors), auto=False)
     ax.legend(labelname, loc='upper right', frameon=False)
 def animate_scale(i): #this one with scale to see dynamic of errors
     with open(localpath1) as f:
