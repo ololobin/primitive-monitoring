@@ -30,10 +30,10 @@ and
 
 Concepts
 ========
-* "counterrors_TS.sh" counts the number of entries in the log file and writes it to error.txt.
-* "monitoring_v2.py" downloads this file via ssh, reads lines and visualizes and plays "alarm.mp3"
-* "monitoring_v2.py" also run counterrors_TS.sh
-* "tail_log.sh" shows error strings and send mail alerts
+* "counterrors_TS.sh" counts the number of entries in the log file and writes it to error.txt;
+* "monitoring_v2.py" downloads this file via ssh, reads lines, visualizes,plays "alarm.mp3" if there are a lot of errors and prints  time;
+* "monitoring_v2.py" also run counterrors_TS.sh;
+* "tail_log.sh" shows error strings and send mail alerts.
 
 Configuration
 =============
