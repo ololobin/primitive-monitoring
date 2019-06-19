@@ -57,7 +57,7 @@ monitoring.py
   sound=os.path.join(os.path.abspath(os.curdir),'alarm.mp3') #alarm.mp3 is your alarm sound
   maxerrors=int(input('Enter maximum of errors: ')) #for dound alarm and 0y line
   timer = 6 #each 6 sec copy error file and check it for sound alarm
-counterrors_TS.sh
+tail_log.sh
 
 .. code-block:: bash
 
