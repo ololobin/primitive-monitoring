@@ -80,11 +80,10 @@ Result:
 v2:
 
 .. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example_v2.png
+.. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example_tail.png
 v1:
 
 .. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example.png
-.. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example_tail.png
-
 To create EXE
 ==============
 .. code-block:: bash
