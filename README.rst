@@ -56,13 +56,13 @@ monitoring.py
   plt.xlabel, plt.ylabel and plt.title has been deleted
   sound=os.path.join(os.path.abspath(os.curdir),'alarm.mp3') #alarm.mp3 is your alarm sound
   maxerrors=int(input('Enter maximum of errors: ')) #for dound alarm and 0y line
-  
+  timer = 6 #each 6 sec copy error file and check it for sound alarm
 counterrors_TS.sh
 
 .. code-block:: bash
 
   $ ERROR_STR=50 #– max errors
-  $ ERR="(\sE\s\[)" #look for " E "
+  $ ERR="(\sE\s\[)" #look for " E ["
   $ MASK='ext*.log' #Mask of log files
   $ OCTA='172.10.' #first octets witch are same on all of your server where this *.sh would be put.
   $ recipients='mail@mail.com' #–past mail
