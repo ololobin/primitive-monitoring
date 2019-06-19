@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import paramiko, os, time, threading, getpass, traceback
+import paramiko, os, time, threading, getpass, traceback, datetime
 from collections import deque
 from playsound import playsound
 
@@ -39,6 +39,7 @@ def alarm():
         last_line = err1.readlines()[-1]
         if int(last_line)>maxerrors:
             try:
+                print(last_line[:-1] + " errors found at "+datetime.datetime.now().strftime("%d-%m %H:%M"))
                 playsound(sound)
             except:
                 traceback.print_exc()
@@ -47,6 +48,7 @@ def alarm():
         last_line = err2.readlines()[-1]
         if int(last_line)>maxerrors:
             try:
+                print(last_line[:-1] + " errors found at "+datetime.datetime.now().strftime("%d-%m %H:%M"))
                 playsound(sound)
             except:
                 traceback.print_exc()
