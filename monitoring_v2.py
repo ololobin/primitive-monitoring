@@ -14,6 +14,7 @@ port = 22
 cmd1='ps ax |grep "counterrors_TS.sh" | awk \'{print  $5;}\'|grep "bash"'
 cmd2='/path_to_logs/logs/counterrors_TS.sh &' #paste the way to logs
 labelname=['Label1', 'Label2'] #paste your labels
+timer=6
 
 # make EXE for employee
 # pip install pypiwin32
@@ -32,15 +33,27 @@ ax = plt.subplot2grid(gridsize, (0, 0), colspan=2, rowspan=2)
 ax1 = plt.subplot2grid(gridsize, (2, 0))
 ax2 = plt.subplot2grid(gridsize, (2, 1))
 
-
-def animate(i): #this one w\o scale to clearly see the peak of failure
-    with open(localpath1) as f:
-        last_line = f.readlines()[-1]
+def alarm():
+    while True:
+        err1 = open(localpath1, "r+")
+        last_line = err1.readlines()[-1]
         if int(last_line)>maxerrors:
             try:
                 playsound(sound)
             except:
                 traceback.print_exc()
+        err1.close()
+        err2 = open(localpath2, "r+")
+        last_line = err2.readlines()[-1]
+        if int(last_line)>maxerrors:
+            try:
+                playsound(sound)
+            except:
+                traceback.print_exc()
+        time.sleep(timer)
+
+def animate(i): #this one w\o scale to clearly see the peak of failure
+    with open(localpath1) as f:
         x1s = []
         y1s = []
         x1=0
@@ -51,15 +64,8 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
             y1s.append(float(y1))
     ax.clear()
     ax.plot(x1s, y1s,'r')
-
     ax.set_ylim((0, maxerrors), auto=False) #this maxerrors value means max critical for paying attention
     with open(localpath2) as f:        
-        last_line = f.readlines()[-1]
-        if int(last_line)>maxerrors:
-            try:
-                playsound(sound)
-            except:
-                traceback.print_exc()
         x2s = []
         y2s = []
         x2=0
@@ -142,7 +148,7 @@ def show_ts1():
     sftp = paramiko.SFTPClient.from_transport(transport)
     while True:
         sftp.get(source, localpath1)
-        time.sleep(6)
+        time.sleep(timer)
     sftp.close()
     transport.close()
 
@@ -152,7 +158,7 @@ def show_ts2():
     sftp2 = paramiko.SFTPClient.from_transport(transport2)
     while True:
         sftp2.get(source, localpath2)
-        time.sleep(6)
+        time.sleep(timer)
     sftp2.close()
     transport2.close()
 
