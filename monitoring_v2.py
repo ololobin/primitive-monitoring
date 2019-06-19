@@ -1,22 +1,25 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import paramiko, os, time, threading, getpass
+import paramiko, os, time, threading, getpass, traceback
 from collections import deque
+from playsound import playsound
+
 SERVER1='server1' #paste your server#1
 SERVER2='server2' #paste your server#2
 source='/path_to_logs/logs/errors.txt' #paste the way to logs
+sound=os.path.join(os.path.abspath(os.curdir),'alarm.mp3')
 localpath1=os.path.join(os.path.abspath(os.curdir),'error1.txt')
 localpath2=os.path.join(os.path.abspath(os.curdir),'error2.txt')
 port = 22
 cmd1='ps ax |grep "counterrors_TS.sh" | awk \'{print  $5;}\'|grep "bash"'
 cmd2='/path_to_logs/logs/counterrors_TS.sh &' #paste the way to logs
 labelname=['Label1', 'Label2'] #paste your labels
+
 # make EXE for employee
 # pip install pypiwin32
 # pip install pyinstaller
 #
 # pyinstaller --onefile --icon=1.ico monitoring_PRODv2.py
-
 
 user=input('Enter login: ')
 passs=getpass.getpass(prompt='Enter password: ') #tiny security
@@ -31,6 +34,12 @@ ax2 = plt.subplot2grid(gridsize, (2, 1))
 
 def animate(i): #this one w\o scale to clearly see the peak of failure
     with open(localpath1) as f:
+        last_line = f.readlines()[-1]
+        if int(last_line)>80:
+            try:
+                playsound(sound)
+            except:
+                traceback.print_exc()
         x1s = []
         y1s = []
         x1=0
@@ -43,7 +52,13 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
     ax.plot(x1s, y1s,'r')
 
     ax.set_ylim((0, 80), auto=False) #this 80 value means max critical for paying attention
-    with open(localpath2) as f:
+    with open(localpath2) as f:        
+        last_line = f.readlines()[-1]
+        if int(last_line)>80:
+            try:
+                playsound(sound)
+            except:
+                traceback.print_exc()
         x2s = []
         y2s = []
         x2=0
