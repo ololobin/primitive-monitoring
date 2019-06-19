@@ -15,11 +15,12 @@ Use:
 * Put tail_log.sh in the log directory on servers.
 
 and
+
 .. code-block::  python
 
-pip install paramiko
-pip install matplotlib
-pip install playsound
+  pip install paramiko
+  pip install matplotlib
+  pip install playsound
 
 and
 
