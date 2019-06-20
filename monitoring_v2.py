@@ -34,22 +34,29 @@ ax1 = plt.subplot2grid(gridsize, (2, 0))
 ax2 = plt.subplot2grid(gridsize, (2, 1))
 
 def alarm():
+    timeerror=''
     while True:
         err1 = open(localpath1, "r+")
         last_line = err1.readlines()[-1]
         if int(last_line)>maxerrors:
             try:
-                print(last_line[:-1] + " errors found at "+datetime.datetime.now().strftime("%d-%m %H:%M"))
                 playsound(sound)
-            except:
+                timeerror_new=datetime.datetime.now().strftime("%d-%m %H:%M")
+                if timeerror!=timeerror_new:
+                    print(last_line[:-1] + " errors found at "+timeerror_new)
+                    timeerror=timeerror_new
+                except:
                 traceback.print_exc()
         err1.close()
         err2 = open(localpath2, "r+")
         last_line = err2.readlines()[-1]
         if int(last_line)>maxerrors:
             try:
-                print(last_line[:-1] + " errors found at "+datetime.datetime.now().strftime("%d-%m %H:%M"))
                 playsound(sound)
+                timeerror_new=datetime.datetime.now().strftime("%d-%m %H:%M")
+                if timeerror!=timeerror_new:
+                    print(last_line[:-1] + " errors found at "+timeerror_new)
+                    timeerror=timeerror_new
             except:
                 traceback.print_exc()
         time.sleep(timer)
