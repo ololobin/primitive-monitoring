@@ -59,6 +59,7 @@ def alarm():
                     timeerror=timeerror_new
             except:
                 traceback.print_exc()
+        err2.close()
         time.sleep(timer)
 
 def animate(i): #this one w\o scale to clearly see the peak of failure
