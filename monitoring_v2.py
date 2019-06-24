@@ -59,7 +59,7 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
             except:
                 traceback.print_exc()
     ax.clear()
-    ax.plot(x1s, y1s,'r')
+    ax.plot(x1s, y1s,'r', linewidth=3)
     ax.set_ylim((0, maxerrors), auto=False) #this 100 value means max critical for paying attention
     with open(localpath2) as f:
         x2s = []
@@ -80,7 +80,7 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
                     timeerror=timeerror_new
             except:
                 traceback.print_exc()
-    ax.plot(x2s, y2s,'b')
+    ax.plot(x2s, y2s,'b', linewidth=3)
     ax.set_ylim((0, maxerrors), auto=False)
     ax.legend(labelname, loc='upper right', frameon=False)
     
