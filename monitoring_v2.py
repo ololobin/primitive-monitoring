@@ -14,7 +14,6 @@ port = 22
 cmd1='ps ax |grep "counterrors_TS.sh" | awk \'{print  $5;}\'|grep "bash"'
 cmd2='/path_to_logs/logs/counterrors_TS.sh &' #paste the way to logs
 labelname=['Label1', 'Label2'] #paste your labels
-timer=6
 
 # make EXE for employee
 # pip install pypiwin32
@@ -25,7 +24,10 @@ timer=6
 user=input('Enter login: ')
 passs=getpass.getpass(prompt='Enter password: ') #tiny security
 maxerrors=int(input('Enter maximum of errors: '))
-
+timer=input('Enter update timer (in sec), default value is 6sec: ')
+if len(timer)==0:
+    timer=6
+    
 plt.style.use('dark_background')
 gridsize = (3, 2)
 fig = plt.figure(figsize=(12, 8))
@@ -33,36 +35,8 @@ ax = plt.subplot2grid(gridsize, (0, 0), colspan=2, rowspan=2)
 ax1 = plt.subplot2grid(gridsize, (2, 0))
 ax2 = plt.subplot2grid(gridsize, (2, 1))
 
-def alarm():
-    timeerror=''
-    while True:
-        err1 = open(localpath1, "r+")
-        last_line = err1.readlines()[-1]
-        if int(last_line)>maxerrors:
-            try:
-                playsound(sound)
-                timeerror_new=datetime.datetime.now().strftime("%d-%m %H:%M")
-                if timeerror!=timeerror_new:
-                    print(last_line[:-1] + " errors found at "+timeerror_new)
-                    timeerror=timeerror_new
-                except:
-                traceback.print_exc()
-        err1.close()
-        err2 = open(localpath2, "r+")
-        last_line = err2.readlines()[-1]
-        if int(last_line)>maxerrors:
-            try:
-                playsound(sound)
-                timeerror_new=datetime.datetime.now().strftime("%d-%m %H:%M")
-                if timeerror!=timeerror_new:
-                    print(last_line[:-1] + " errors found at "+timeerror_new)
-                    timeerror=timeerror_new
-            except:
-                traceback.print_exc()
-        err2.close()
-        time.sleep(timer)
-
 def animate(i): #this one w\o scale to clearly see the peak of failure
+    timeerror=''
     with open(localpath1) as f:
         x1s = []
         y1s = []
@@ -72,10 +46,20 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
             y1 = row
             x1s.append(x1)
             y1s.append(float(y1))
+        last_line = y1[:-1]
+        if int(last_line)>maxerrors:
+            try:
+                playsound(sound1)
+                timeerror_new=datetime.datetime.now().strftime("%d-%m %H:%M")
+                if timeerror!=timeerror_new:
+                    print(last_line[:-1] + " errors found at "+timeerror_new)
+                    timeerror=timeerror_new
+            except:
+                traceback.print_exc()
     ax.clear()
     ax.plot(x1s, y1s,'r')
-    ax.set_ylim((0, maxerrors), auto=False) #this maxerrors value means max critical for paying attention
-    with open(localpath2) as f:        
+    ax.set_ylim((0, maxerrors), auto=False) #this 100 value means max critical for paying attention
+    with open(localpath2) as f:
         x2s = []
         y2s = []
         x2=0
@@ -84,9 +68,20 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
             y2 = row
             x2s.append(x2)
             y2s.append(float(y2))
+        last_line = y2[:-1]
+        if int(last_line)>maxerrors:
+            try:
+                playsound(sound2)
+                timeerror_new=datetime.datetime.now().strftime("%d-%m %H:%M")
+                if timeerror!=timeerror_new:
+                    print(last_line[:-1] + " errors found at "+timeerror_new)
+                    timeerror=timeerror_new
+            except:
+                traceback.print_exc()
     ax.plot(x2s, y2s,'b')
     ax.set_ylim((0, maxerrors), auto=False)
     ax.legend(labelname, loc='upper right', frameon=False)
+    
 def animate_scale(i): #this one with scale to see dynamic of errors
     with open(localpath1) as f:
         x1s = []
