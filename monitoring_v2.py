@@ -107,7 +107,6 @@ def animate_scale(i): #this one with scale to see dynamic of errors
             y2s.append(float(y2))
     ax1.plot(x2s, y2s,'b')
 
-
 def animate_scale2(i): #this one with scale to see dynamic of errors
     with open(localpath1) as f:
         x1s = []
@@ -155,7 +154,7 @@ def show_ts1():
     sftp = paramiko.SFTPClient.from_transport(transport)
     while True:
         sftp.get(source, localpath1)
-        time.sleep(timer)
+        time.sleep(int(timer))
     sftp.close()
     transport.close()
 
@@ -165,13 +164,13 @@ def show_ts2():
     sftp2 = paramiko.SFTPClient.from_transport(transport2)
     while True:
         sftp2.get(source, localpath2)
-        time.sleep(timer)
+        time.sleep(int(timer))
     sftp2.close()
     transport2.close()
 
-ani = animation.FuncAnimation(fig, animate, interval=1000)
-ani1 = animation.FuncAnimation(fig, animate_scale, interval=1000)
-ani2 = animation.FuncAnimation(fig, animate_scale2, interval=1000)
+ani = animation.FuncAnimation(fig, animate, interval=(int(timer)*1000))
+ani1 = animation.FuncAnimation(fig, animate_scale, interval=(int(timer)*1000))
+ani2 = animation.FuncAnimation(fig, animate_scale2, interval=(int(timer)*1000))
 
 the_process1 = threading.Thread(target=run_sh1, args=())
 the_process1.start()
