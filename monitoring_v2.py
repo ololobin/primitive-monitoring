@@ -37,6 +37,8 @@ ax2 = plt.subplot2grid(gridsize, (2, 1))
 
 def animate(i): #this one w\o scale to clearly see the peak of failure
     timeerror=''
+    y1=0
+    y2=0
     with open(localpath1) as f:
         x1s = []
         y1s = []
@@ -46,13 +48,13 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
             y1 = row
             x1s.append(x1)
             y1s.append(float(y1))
-        last_line = y1[:-1]
-        if int(last_line)>maxerrors:
+        last_line = int(y1[:-1])
+        if last_line>maxerrors:
             try:
                 playsound(sound1)
                 timeerror_new=datetime.datetime.now().strftime("%d-%m %H:%M")
                 if timeerror!=timeerror_new:
-                    print(last_line[:-1] + " errors found at "+timeerror_new)
+                    print(str(last_line) + " errors found at "+timeerror_new)
                     timeerror=timeerror_new
             except:
                 traceback.print_exc()
@@ -68,13 +70,13 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
             y2 = row
             x2s.append(x2)
             y2s.append(float(y2))
-        last_line = y2[:-1]
-        if int(last_line)>maxerrors:
+        last_line = int(y2[:-1])
+        if last_line>maxerrors:
             try:
                 playsound(sound2)
                 timeerror_new=datetime.datetime.now().strftime("%d-%m %H:%M")
                 if timeerror!=timeerror_new:
-                    print(last_line[:-1] + " errors found at "+timeerror_new)
+                    print(str(last_line) + " errors found at "+timeerror_new)
                     timeerror=timeerror_new
             except:
                 traceback.print_exc()
@@ -179,13 +181,10 @@ the_process3 = threading.Thread(target=show_ts1, args=())
 the_process3.start()
 the_process4 = threading.Thread(target=show_ts2, args=())
 the_process4.start()
-the_process5 = threading.Thread(target=alarm, args=())
+the_process5 = threading.Thread(target=plt.show(), args=())
 the_process5.start()
-the_process6 = threading.Thread(target=plt.show(), args=())
-the_process6.start()
 the_process1.join()
 the_process2.join()
 the_process3.join()
 the_process4.join()
 the_process5.join()
-the_process6.join()
