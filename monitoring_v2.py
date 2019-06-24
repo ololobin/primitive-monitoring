@@ -48,7 +48,7 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
             y1 = row
             x1s.append(x1)
             y1s.append(float(y1))
-        last_line = int(y1[:-1])
+        last_line = int(y1)
         if last_line>maxerrors:
             try:
                 playsound(sound1)
@@ -70,7 +70,7 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
             y2 = row
             x2s.append(x2)
             y2s.append(float(y2))
-        last_line = int(y2[:-1])
+        last_line = int(y2)
         if last_line>maxerrors:
             try:
                 playsound(sound2)
