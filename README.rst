@@ -10,7 +10,7 @@ The employees working on Windows stations.
 Use:
 ====
 * Put counterrors_TS.sh in the log directory on servers;
-* Put errors.txt and alarm.mp3 in logs before 1st run;
+* Put errors.txt, alarm1.wav and alarm2.wav in main folder before 1st run;
 * Run monitoring_v2.py (monitoring.exe) and login;
 * Put tail_log.sh in the log directory on servers.
 
