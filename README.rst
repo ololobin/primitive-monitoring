@@ -59,12 +59,12 @@ monitoring.py
   plt.xlabel('') # 0X label
   plt.ylabel('Цена') # 0Y label
   plt.title('RED - 100 \n BLUE - 101') #title
-  !!!new v2!!!:
   labelname=['Label1', 'Label2'] #paste your labels for legend
   plt.xlabel, plt.ylabel and plt.title has been deleted
   sound=os.path.join(os.path.abspath(os.curdir),'alarm.mp3') #alarm.mp3 is your alarm sound
   maxerrors=int(input('Enter maximum of errors: ')) #for dound alarm and 0y line
-  timer = 6 #each 6 sec copy error file and check it for sound alarm
+  timer = 6 #default time to copy error's count
+  int(timer)*1500) # time to draw and alarm, if timer = 6, then every 9 sec u get new draw and alarm
 tail_log.sh
 
 .. code-block:: bash
@@ -77,13 +77,10 @@ tail_log.sh
     
 Result:
 =======
-v2:
 
 .. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example_v2.png
 .. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example_tail.png
-v1:
 
-.. image:: https://github.com/ololobin/primitive-monitoring/blob/master/example.png
 To create EXE
 ==============
 .. code-block:: bash
