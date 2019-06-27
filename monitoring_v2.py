@@ -39,11 +39,11 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
     timeerror=''
     y1=0
     y2=0
-    with open(localpath1) as f:
+    with open(localpath1) as f1:
         x1s = []
         y1s = []
         x1=0
-        for row in deque(f, 50): #I am cool with 50 value in 0x line 
+        for row in deque(f1, 50): #I am cool with 50 value in 0x line 
             x1 = x1+1
             y1 = row
             x1s.append(x1)
@@ -61,11 +61,11 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
     ax.clear()
     ax.plot(x1s, y1s,'r', linewidth=3)
     ax.set_ylim((0, maxerrors), auto=False) #this 100 value means max critical for paying attention
-    with open(localpath2) as f:
+    with open(localpath2) as f2:
         x2s = []
         y2s = []
         x2=0
-        for row in deque(f, 50):
+        for row in deque(f2, 50):
             x2 = x2+1
             y2 = row
             x2s.append(x2)
@@ -85,22 +85,22 @@ def animate(i): #this one w\o scale to clearly see the peak of failure
     ax.legend(labelname, loc='upper right', frameon=False)
     
 def animate_scale(i): #this one with scale to see dynamic of errors
-    with open(localpath1) as f:
+    with open(localpath1) as f3:
         x1s = []
         y1s = []
         x1=0
-        for row in deque(f, 50):
+        for row in deque(f3, 50):
             x1 = x1+1
             y1 = row
             x1s.append(x1)
             y1s.append(float(y1))
     ax1.clear()
     ax1.plot(x1s, y1s,'r')
-    with open(localpath2) as f:
+    with open(localpath2) as f4:
         x2s = []
         y2s = []
         x2=0
-        for row in deque(f, 50):
+        for row in deque(f4, 50):
             x2 = x2+1
             y2 = row
             x2s.append(x2)
@@ -108,22 +108,22 @@ def animate_scale(i): #this one with scale to see dynamic of errors
     ax1.plot(x2s, y2s,'b')
 
 def animate_scale2(i): #this one with scale to see dynamic of errors
-    with open(localpath1) as f:
+    with open(localpath1) as f5:
         x1s = []
         y1s = []
         x1=0
-        for row in deque(f, 1000):
+        for row in deque(f5, 1000):
             x1 = x1+1
             y1 = row
             x1s.append(x1)
             y1s.append(float(y1))
     ax2.clear()
     ax2.plot(x1s, y1s,'r')
-    with open(localpath2) as f:
+    with open(localpath2) as f6:
         x2s = []
         y2s = []
         x2=0
-        for row in deque(f, 1000):
+        for row in deque(f6, 1000):
             x2 = x2+1
             y2 = row
             x2s.append(x2)
@@ -168,9 +168,9 @@ def show_ts2():
     sftp2.close()
     transport2.close()
 
-ani = animation.FuncAnimation(fig, animate, interval=(int(timer)*1000))
-ani1 = animation.FuncAnimation(fig, animate_scale, interval=(int(timer)*1000))
-ani2 = animation.FuncAnimation(fig, animate_scale2, interval=(int(timer)*1000))
+ani = animation.FuncAnimation(fig, animate, interval=(int(timer)*1500))
+ani1 = animation.FuncAnimation(fig, animate_scale, interval=(int(timer)*1500))
+ani2 = animation.FuncAnimation(fig, animate_scale2, interval=(int(timer)*1500))
 
 the_process1 = threading.Thread(target=run_sh1, args=())
 the_process1.start()
